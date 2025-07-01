@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Qlik Embedded Visualization (No Login)</title>
+  <title>Qlik Mashup Without Login</title>
+  <!-- Load jQuery (optional, only needed if you use it in your logic) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Load RequireJS from Qlik Cloud -->
+  <script src="https://ix01xmr4p1gnbkz.eu.qlikcloud.com/resources/assets/external/requirejs/require.js"></script>
 </head>
 <body>
 
-<div id="QV01"></div>
-<div id="QV02"></div>
-<div id="QV03"></div>
+<h2>Qlik Mashup Visualizations</h2>
+<div id="QV01" style="height:400px;"></div>
+<div id="QV02" style="height:400px;"></div>
 
 <script>
   const config = {
@@ -32,16 +35,13 @@
 
     const app = qlik.openApp('32a7a21a-8b99-4af8-9411-bab71d116d88', config);
 
+    // Replace with your actual object IDs
     app.visualization.get('b10b249e-2ff8-447d-9e44-fca5a9d8580b').then(function (vis) {
       vis.show("QV01");
     });
 
-    app.visualization.get('<OBJECT_ID_2>').then(function (vis) {
+    app.visualization.get('YOUR_OBJECT_ID_2').then(function (vis) {
       vis.show("QV02");
-    });
-
-    app.visualization.get('<OBJECT_ID_3>').then(function (vis) {
-      vis.show("QV03");
     });
   });
 </script>
