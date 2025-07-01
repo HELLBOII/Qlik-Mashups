@@ -46,10 +46,10 @@ login().then(() => {
             $( '#popup' ).hide();
         } );
         //open apps -- inserted here --
-        var app = qlik.openApp( '<APP_ID>', config );
+        var app = qlik.openApp( '32a7a21a-8b99-4af8-9411-bab71d116d88', config );
 
         //get objects -- inserted here --
-        app.visualization.get('<OBJECT_ID>').then(function(vis){
+        app.visualization.get('b10b249e-2ff8-447d-9e44-fca5a9d8580b').then(function(vis){
         vis.show("QV01");
         } );
         app.visualization.get('<OBJECT_ID>').then(function(vis){
