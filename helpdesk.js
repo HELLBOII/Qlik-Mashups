@@ -7,7 +7,7 @@ var config = {
 };
 
 //Redirect to login if user is not logged in
-async function login() {
+/*async function login() {
     function isLoggedIn() {
         return fetch("https://"+config.host+"/api/v1/users/me", {
             method: 'GET',
@@ -29,6 +29,26 @@ async function login() {
             throw new Error('not logged in');
         }
     });
+} */
+async function login() {
+    async function isLoggedIn() {
+        const res = await fetch("https://" + config.host + "/api/v1/users/me", {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'qlik-web-integration-id': config.webIntegrationId
+            }
+        });
+
+        if (res.status !== 200) {
+            // Redirect to Qlik login page
+            window.location.href = "https://" + config.host + "/login?qlik-web-integration-id=" + config.webIntegrationId + "&returnto=" + location.href;
+            throw new Error("User not authenticated.");
+        }
+        return true;
+    }
+
+    return isLoggedIn();
 }
 login().then(() => {
     require.config( {
